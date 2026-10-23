@@ -1,0 +1,675 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Montage Plus - مونتاج بلس </title>
+    <link rel="icon" type="image/png" href="icon.png">
+    
+    <!-- Google Fonts: Cairo & Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f3ff',
+                            100: '#e0e7ff',
+                            500: '#4f46e5',
+                            600: '#4338ca',
+                            700: '#3730a3',
+                            900: '#1e1b4b',
+                            accent: '#7c3aed',
+                            highlight: '#f43f5e',
+                            whatsapp: '#25D366',
+                            whatsappDark: '#128C7E'
+                        },
+                        lightBg: {
+                            DEFAULT: '#f8fafc',
+                            card: '#ffffff',
+                            border: '#e2e8f0',
+                            subtle: '#f1f5f9'
+                        },
+                        darkBg: {
+                            DEFAULT: '#0b0f19',
+                            card: '#131b2e',
+                            border: '#1f293d'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'Tajawal', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5;
+        }
+
+        /* Improved Text Gradient and Contrast */
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #e11d48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #fb7185 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Fixed title line-height to prevent text overlap */
+        .title-heading {
+            line-height: 1.4 !important;
+            letter-spacing: 0px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .dark .glass-card {
+            background: rgba(19, 27, 46, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .card-shadow {
+            box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.08), 0 0 15px rgba(0, 0, 0, 0.03);
+        }
+        .dark .card-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-lightBg text-slate-800 dark:bg-darkBg dark:text-slate-100 transition-colors duration-300 min-h-screen selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 dark:bg-darkBg/90 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="1.png" alt="Montage Plus" class="w-11 h-11 rounded-xl object-cover shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300">
+                    <div class="flex flex-col">
+                        <span class="font-black text-xl sm:text-2xl text-slate-900 dark:text-white flex items-center gap-1.5 leading-normal">
+                            Montage <span class="gradient-text">Plus</span>
+                        </span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-bold -mt3">مونتاج بلس</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-8 font-bold text-sm">
+                    <a href="#home" class="text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">الرئيسية</a>
+                    <a href="#contents" class="text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">محتويات الحزمة</a>
+                    <a href="#features" class="text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">مميزات الحزمة</a>
+                    <a href="#faq" class="text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">الأسئلة الشائعة</a>
+                </nav>
+
+                <!-- Actions (Theme Toggle & Contact Button) -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" aria-label="تبديل الوضع" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all duration-200 flex items-center justify-center">
+                        <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-lg text-slate-700"></i>
+                        <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg text-amber-400 hidden"></i>
+                    </button>
+
+                    <!-- WhatsApp Header Button -->
+                    <a href="https://wa.me/201107096214?text=أهلاً%20مونتاج%20بلس،%20أود%20الاستفسار%20عن%20حزمة%20ملحقات%20المونتاج" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md shadow-emerald-600/20 hover:shadow-lg hover:shadow-emerald-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>تواصل معنا</span>
+                    </a>
+
+                    <!-- Mobile Menu Trigger -->
+                    <button id="mobile-menu-btn" aria-label="القائمة" class="md:hidden p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-darkBg-card border-b border-slate-200 dark:border-slate-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#home" class="block px-3 py-2.5 rounded-lg text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold">الرئيسية</a>
+            <a href="#contents" class="block px-3 py-2.5 rounded-lg text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold">محتويات الحزمة</a>
+            <a href="#features" class="block px-3 py-2.5 rounded-lg text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold">مميزات الحزمة</a>
+            <a href="#faq" class="block px-3 py-2.5 rounded-lg text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold">الأسئلة الشائعة</a>
+            <a href="https://wa.me/201107096214?text=أهلاً%20مونتاج%20بلس،%20أود%20الاستفسار%20عن%20حزمة%20ملحقات%20المونتاج" 
+               target="_blank" 
+               class="flex items-center justify-center gap-2 w-full bg-emerald-600 text-white py-3 rounded-xl font-bold">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>تواصل معنا عبر واتساب</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero / Main Offer Section -->
+    <section id="home" class="relative py-12 lg:py-20 overflow-hidden bg-gradient-to-b from-brand-50/60 via-lightBg to-lightBg dark:from-darkBg dark:via-darkBg dark:to-darkBg">
+        
+        <!-- Light Ambient Effects -->
+        <div class="absolute top-10 right-1/2 translate-x-1/2 w-[600px] h-[350px] bg-brand-100/70 dark:bg-brand-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Main Banner Title with High Contrast & Clear Spacing -->
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-100 dark:bg-brand-500/10 border border-brand-200 dark:border-brand-500/20 text-brand-700 dark:text-brand-300 font-black text-xs sm:text-sm mb-6 animate-pulse-slow">
+                    <span class="flex h-2.5 w-2.5 rounded-full bg-brand-600"></span>
+                    🔥 الحزمة الشاملة لصناع المحتوى والمونتيرية المحترفين
+                </div>
+                
+                <!-- FIXED TITLE: Clear font size, high contrast color, generous line height -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white title-heading mb-6 tracking-normal">
+                    ارتقِ بمونتاج فيديوهاتك إلى <span class="gradient-text">المستوى السينمائي</span>
+                </h1>
+                
+                <p class="text-base sm:text-xl text-slate-600 dark:text-slate-300 font-semibold max-w-2xl mx-auto leading-relaxed">
+                    احصل على أضخم مكتبة ملحقات مونتاج متكاملة لتسريع إنتاجيتك وإخراج فيديوهات احترافية تجذب المشاهدين.
+                </p>
+            </div>
+
+            <!-- MAIN PRODUCT CARD -->
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white dark:bg-darkBg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 lg:p-10 card-shadow transition-all duration-300">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                        
+                        <!-- Product Image Column -->
+                        <div class="lg:col-span-7 relative group">
+                            <div class="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-900">
+                                
+                                <!-- ======================================================== -->
+                                <!-- USER IMAGE SOURCE: CAN BE EASILY REPLACED HERE 👇 -->
+                                <!-- ======================================================== -->
+                                <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80" 
+                                     alt="حزمة ملحقات مونتاج احترافية" 
+                                     class="w-full h-[280px] sm:h-[360px] object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                                
+                                <!-- Badge on Image -->
+                                <div class="absolute top-4 right-4 bg-slate-900/85 backdrop-blur-md text-amber-400 font-extrabold text-xs sm:text-sm px-3.5 py-2 rounded-xl border border-amber-500/30 flex items-center gap-2 shadow-lg">
+                                    <i class="fa-solid fa-crown"></i>
+                                    <span>إصدار 2026 الشامل</span>
+                                </div>
+
+                                <!-- Software Icons Bar -->
+                                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent p-4 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-200 font-bold">
+                                    <span>متوافقة مع برامج المونتاج:</span>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-200">Premiere</span>
+                                        <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-200">After Effects</span>
+                                        <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-200">CapCut</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Info & Purchase Column -->
+                        <div class="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
+                            
+                            <div>
+                                <!-- Discount Tag -->
+                                <div class="inline-flex items-center gap-2 bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/30 text-rose-600 dark:text-rose-400 font-black text-xs px-3 py-1.5 rounded-full mb-3">
+                                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                                    خصم لفترة محدودة ⏳
+                                </div>
+
+                                <!-- FIXED CARD TITLE: Generous spacing & bold dark color in light mode -->
+                                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-snug tracking-tight mb-2">
+                                    حزمة ملحقات مونتاج احترافية
+                                </h2>
+
+                                <p class="text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+                                    مكتبة ضخمة تضم أكثر من 5000+ عنصر ملحق جاهز للاستخدام بضغطة زر.
+                                </p>
+                            </div>
+
+                            <!-- Price Display Container -->
+                            <div class="bg-slate-50 dark:bg-slate-900/80 p-4 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs text-slate-500 dark:text-slate-400 font-bold">السعر قبل الخصم:</span>
+                                    <!-- Discount Badge Percentage -->
+                                    <span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-400 text-xs font-black px-2.5 py-1 rounded-lg border border-emerald-300 dark:border-emerald-500/30">
+                                        خصم 33% OFF
+                                    </span>
+                                </div>
+                                
+                                <div class="flex items-baseline gap-3 mt-1">
+                                    <span class="text-3xl sm:text-4xl font-black text-brand-600 dark:text-brand-400">400 ج.م</span>
+                                    <span class="text-lg text-slate-400 line-through font-bold">600 ج.م</span>
+                                </div>
+                            </div>
+
+                            <!-- Highlights Checkpoints -->
+                            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-bold">
+                                <li class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 text-base"></i>
+                                    <span>تحميل مباشر وسريع بجودة عالية</span>
+                                </li>
+                                <li class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 text-base"></i>
+                                    <span>ترخيص استخدام مدى الحياة دون أي اشتراك</span>
+                                </li>
+                                <li class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 text-base"></i>
+                                    <span>شرح سريع لطريقة التركيب والاستخدام</span>
+                                </li>
+                            </ul>
+
+                            <!-- Main Purchase WhatsApp Button -->
+                            <div>
+                                <a href="https://wa.me/201107096214?text=أهلاً%20مونتاج%20بلس،%20أريد%20شراء%20حزمة%20ملحقات%20المونتاج%20الاحترافية" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer"
+                                   class="w-full inline-flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-600 via-brand-whatsapp to-emerald-600 text-white py-4 px-6 rounded-2xl font-black text-lg shadow-xl shadow-emerald-600/20 hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group">
+                                    <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
+                                    <span>شراء الحزمة الآن</span>
+                                </a>
+                                <p class="text-center text-[12px] text-slate-500 dark:text-slate-400 mt-2.5 font-bold">
+                                    ⚡ يتم التحويل فوراً للواتساب لإرسال روابط التحميل مباشرة
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pack Contents Section -->
+    <section id="contents" class="py-16 sm:py-24 bg-white dark:bg-darkBg-card/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white title-heading mb-3">
+                    ماذا تحتوي <span class="gradient-text">الحزمة الاحترافية؟</span>
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base font-bold">
+                    أدوات ومحتويات متكاملة تم جمعها بعناية لتغطية كافة أساليب المونتاج
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Content Card 1 -->
+                <div class="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-darkBg-card border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">انتقالات سينمائية (Transitions)</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
+                        انتقالات احترافية متنوعة (Zoom, Glitch, Smooth Blur, Camera Shake) جاهزة للسحب والإفلات.
+                    </p>
+                </div>
+
+                <!-- Content Card 2 -->
+                <div class="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-darkBg-card border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">مؤثرات صوتية (Sound Effects)</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
+                        مكتبة أصوات نقية للمونتاج (Whoosh, Swish, Pops, Movie Hits, Keyboard clicks) لإعطاء روح للفيديو.
+                    </p>
+                </div>
+
+                <!-- Content Card 3 -->
+                <div class="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-darkBg-card border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">فلاتر وتصحيح ألوان (LUTs)</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
+                        درجات ألوان سينمائية ممتازة تناسب الفلوجات، الإعلانات، والمحتوى السريع بضغطة واحدة.
+                    </p>
+                </div>
+
+                <!-- Content Card 4 -->
+                <div class="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-darkBg-card border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-font"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">عناوين وقوالب نصوص متحركة</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
+                        قوالب نصوص وحركات لور ثرد (Lower Thirds) وعناوين ثلاثية الأبعاد سهلة التعديل.
+                    </p>
+                </div>
+
+                <!-- Content Card 5 -->
+                <div class="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-darkBg-card border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-photo-film"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">تأثيرات ضوئية وملحقات شفافة</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
+                        Light Leaks, Film Grain, Dust Overlays وملصقات PNG عالية الدقة لإضافة طابع فني للفيديو.
+                    </p>
+                </div>
+
+                <!-- Content Card 6 -->
+                <div class="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-darkBg-card border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 dark:bg-sky-500/10 dark:text-sky-400 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">شرح بالفيديو للتركيب</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
+                        فيديوهات تعليمية مبسطة تشرح لك طريقة إضافة الملحقات لبرنامجك بسهولة بدون مشاكل.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Software Section -->
+    <section id="features" class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <span class="text-brand-600 dark:text-brand-400 font-black text-sm tracking-wide">لماذا مونتاج بلس؟</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white title-heading mt-2 mb-4">
+                        وفر وقتك وضاعف إنتاجيتك مع أدوات جاهزة
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-semibold mb-8">
+                        بدلاً من قضاء ساعات طويلة في البحث عن ملحق أو إنشاء تأثير من الصفر، تتيح لك هذه الحزمة الوصول الفوري لأدق التفاصيل التي تحتاجها لإنشاء فيديو احترافي.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-darkBg-card border border-slate-200/80 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400 flex items-center justify-center shrink-0 font-bold">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">سرعة وبساطة في العمل</h3>
+                                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 font-semibold">
+                                    معظم الملحقات تعمل بأسلوب Drag & Drop (اسحب وأسقط) مباشرة في خط المونتاج.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-darkBg-card border border-slate-200/80 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400 flex items-center justify-center shrink-0 font-bold">
+                                <i class="fa-solid fa-infinity"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">دفع مرة واحدة ومدى الحياة</h3>
+                                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 font-semibold">
+                                    لا توجد أي اشتراكات شهرية متكررة، تدفع 400 ج.م فقط وتملك الحزمة بشكل كامل.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <a href="https://wa.me/201107096214?text=أهلاً%20مونتاج%20بلس،%20أريد%20الاستفسار%20عن%20الحزمة" 
+                           target="_blank"
+                           class="inline-flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold px-6 py-3.5 rounded-xl hover:bg-brand-600 dark:hover:bg-brand-400 dark:hover:text-white transition-all duration-200">
+                            <span>اطلب الحزمة عبر واتساب</span>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Software Grid Showcase -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white dark:bg-darkBg-card p-6 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-center shadow-sm">
+                        <div class="text-4xl text-purple-600 mb-3"><i class="fa-solid fa-film"></i></div>
+                        <h4 class="font-extrabold text-slate-900 dark:text-white text-base">Adobe Premiere</h4>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-semibold block">انتقالات وقوالب MOGRT</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-darkBg-card p-6 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-center shadow-sm sm:translate-y-4">
+                        <div class="text-4xl text-indigo-600 mb-3"><i class="fa-solid fa-clapperboard"></i></div>
+                        <h4 class="font-extrabold text-slate-900 dark:text-white text-base">After Effects</h4>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-semibold block">مؤثرات بصرية وتحريك</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-darkBg-card p-6 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-center shadow-sm">
+                        <div class="text-4xl text-emerald-600 mb-3"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <h4 class="font-extrabold text-slate-900 dark:text-white text-base">CapCut / Mobile</h4>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-semibold block">ملحقات جاهزة للموبايل</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-darkBg-card p-6 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-center shadow-sm sm:translate-y-4">
+                        <div class="text-4xl text-amber-600 mb-3"><i class="fa-solid fa-sliders"></i></div>
+                        <h4 class="font-extrabold text-slate-900 dark:text-white text-base">DaVinci Resolve</h4>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-semibold block">درجات وأصوات سينمائية</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 sm:py-24 bg-white dark:bg-darkBg-card/40 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white title-heading mb-2">
+                    الأسئلة <span class="gradient-text">الشائعة</span>
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm font-bold">إجابات سريعة للأسئلة الأكثر تكراراً</p>
+            </div>
+
+            <div class="space-y-4">
+                
+                <!-- FAQ Item 1 -->
+                <div class="bg-slate-50 dark:bg-darkBg-card border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 text-right flex items-center justify-between font-extrabold text-slate-900 dark:text-white focus:outline-none">
+                        <span>كيف سأستلم الحزمة بعد الدفع؟</span>
+                        <i class="fa-solid fa-chevron-down text-brand-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-semibold border-t border-slate-200/70 dark:border-slate-800 pt-3">
+                        بمجرد تواصلك معنا عبر الواتساب وتأكيد عملية الدفع، نقوم فوراً بإرسال رابط التحميل المباشر والسريع عبر Google Drive لتتمكن من تنزيل الحزمة واستخدامها فوراً.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-slate-50 dark:bg-darkBg-card border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 text-right flex items-center justify-between font-extrabold text-slate-900 dark:text-white focus:outline-none">
+                        <span>ما هي وسائل الدفع المتاحة؟</span>
+                        <i class="fa-solid fa-chevron-down text-brand-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-semibold border-t border-slate-200/70 dark:border-slate-800 pt-3">
+                        نوفر وسائل دفع متعددة وسهلة داخل مصر وخارجها (فودافون كاش، إنستا باي InstaPay، أو التحويلات البنكية).
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-slate-50 dark:bg-darkBg-card border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 text-right flex items-center justify-between font-extrabold text-slate-900 dark:text-white focus:outline-none">
+                        <span>هل يمكنني استخدام الملحقات في أعمال تجارية للعملاء؟</span>
+                        <i class="fa-solid fa-chevron-down text-brand-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-semibold border-t border-slate-200/70 dark:border-slate-800 pt-3">
+                        نعم بالتأكيد! جميع العناصر والملحقات مفتوحة الترخيص تماماً ويمكنك استخدامها في مشاريعك الخاصة أو مشاريع عملائك دون أي حقوق ملكية.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <section class="py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-brand-600 via-brand-700 to-brand-accent p-8 sm:p-12 rounded-3xl text-center text-white relative shadow-xl overflow-hidden">
+                <h2 class="text-2xl sm:text-4xl font-black mb-4 title-heading">ابدأ بتطوير فيديوهاتك وتوفير وقتك الآن!</h2>
+                <p class="text-white/90 max-w-xl mx-auto text-sm sm:text-base font-bold mb-8">
+                    احصل على حزمة "مونتاج بلس" الكاملة بسعر 400 ج.م فقط بدلاً من 600 ج.م لفترة محدودة.
+                </p>
+                <a href="https://wa.me/201107096214?text=أهلاً%20مونتاج%20بلس،%20أريد%20شراء%20حزمة%20ملحقات%20المونتاج" 
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-lg hover:scale-105 active:scale-95 transition-all duration-200">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>طلب الحزمة عبر الواتساب</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 text-xs sm:text-sm border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <div class="flex items-center gap-3">
+                <img src="1.png" alt="Montage Plus" class="w-8 h-8 rounded-lg object-cover">
+                <span class="font-black text-white text-base">Montage Plus — مونتاج بلس</span>
+            </div>
+
+            <p class="text-center md:text-right text-slate-400 font-semibold">
+                جميع الحقوق محفوظة &copy; <span id="year"></span> Montage Plus.
+            </p>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/201107096214" target="_blank" class="text-emerald-400 hover:text-emerald-300 text-xl" aria-label="واتساب">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="https://www.facebook.com/share/1C81JQu3De/" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-400 text-xl" aria-label="فيسبوك">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201107096214?text=أهلاً%20مونتاج%20بلس،%20أريد%20شراء%20حزمة%20ملحقات%20المونتاج" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="تواصل عبر الواتساب"
+       class="fixed bottom-6 left-6 z-50 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 active:scale-90 transition-all duration-300 animate-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // 1. Dynamic Year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 2. Theme Toggle Logic (Defaulting to LIGHT MODE)
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const htmlElement = document.documentElement;
+
+            // Explicitly force 'light' mode as primary default unless user explicitly set 'dark'
+            const savedTheme = localStorage.getItem('color-theme');
+
+            if (savedTheme === 'dark') {
+                htmlElement.classList.add('dark');
+                htmlElement.classList.remove('light');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.hidden = true;
+            }
+
+            themeToggleBtn.addEventListener('click', function () {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    htmlElement.classList.add('light');
+                    localStorage.setItem('color-theme', 'light');
+                    darkIcon.classList.remove('hidden');
+                    lightIcon.classList.add('hidden');
+                } else {
+                    htmlElement.classList.add('dark');
+                    htmlElement.classList.remove('light');
+                    localStorage.setItem('color-theme', 'dark');
+                    darkIcon.classList.add('hidden');
+                    lightIcon.classList.remove('hidden');
+                }
+            });
+
+            // 3. Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 4. Accordion Logic for FAQ
+            const faqButtons = document.querySelectorAll('.faq-btn');
+            faqButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('i');
+
+                    const isHidden = content.classList.contains('hidden');
+                    
+                    document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                    document.querySelectorAll('.faq-btn i').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                    if (isHidden) {
+                        content.classList.remove('hidden');
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
